@@ -6,4 +6,7 @@ and once exhausted, will apply a brute force algorithm to test potential permuta
 
 To run:
 
-```npm start```
+```
+npm start [board_filename]
+```
+...where `board_filename` is a path to the JSON file containing the board.

@@ -1,16 +1,12 @@
 const Board = require("./src/board");
 
+const boardFile = process.argv[2];
+if (!boardFile) {
+    console.error("Board file not found. Please specify path to file containing the board.");
+    process.exit();
+}
 const board = new Board();
-board
-    .set(3,1,8) .set(3,2,3) .set(3,3,9)
-    .set(3,4,4) .set(3,5,6)
-    .set(2,7,3) .set(1,9,9)
-    .set(4,2,4) .set(5,2,5) .set(5,3,7)
-    .set(4,4,5)
-    .set(5,7,8) .set(6,7,5) .set(5,8,2) .set(6,8,1) .set(5,9,4)
-    .set(7,1,4) .set(8,1,9) .set(9,2,8)
-    .set(8,5,2) .set(9,5,4)
-    .set(8,7,4) .set(9,7,2) .set(8,8,6) .set(9,8,3) .set(8,9,1) .set(9,9,7)
+board.load(boardFile);
 
 const nextMove = (col, row, val) => {
     if (!board.get(col, row).isSet()) {

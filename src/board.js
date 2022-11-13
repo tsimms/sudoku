@@ -1,4 +1,6 @@
 const Element = require("./element");
+const fs = require('fs');
+
 
 class Board {
     constructor() {
@@ -21,6 +23,14 @@ class Board {
     getColVals = (col) => this.#getCol(col).map(e => e.get());
 
     set = (col, row, number) => { this.get(col, row).set(number); return this; }
+    load = (file) => {
+        const contents = fs.readFileSync(file);
+        const json = JSON.parse(contents);
+        json.forEach((row, y) => row.forEach((cell, x) => {
+            if (cell) { this.set(x+1, y+1, cell); }
+        }))
+    }
+    
 
     #getEmptyList = () => {
         const list = [];
